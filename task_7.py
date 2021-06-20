@@ -12,6 +12,5 @@ for el in range(len(my_list)):
 
 answer_2 = min(my_list_2)
 
-
 print(answer_1)
 print(answer_2)
