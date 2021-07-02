@@ -1,29 +1,25 @@
-from collections import namedtuple, deque
+import sys
 
-all_comp = []
-Company = namedtuple('Company', ['name', 'profit'])
+def func_1(x):
+    print(f'Программа занимает: 0 байт')
+    return str(x)[::-1]
 
-n = int(input('Введите количество организаций: '))
-total_profit = 0
+def func_2(x):
+    my_str = ''
+    for el in str(x)[::-1]:
+        my_str += el
+    print(f'Программа занимает: {sys.getsizeof(my_str) + sys.getsizeof(el)} байт')
+    return my_str
 
-for el in range(n):
-    name = input('Введите имя организации: ')
-    profit_by_quarter = []
-    for i in range(1, 5):
-        profit_by_quarter.append(int(input(f'Прибыль за квартал №: {i} - ')))
-    total_profit += sum(profit_by_quarter)
-    all_comp.append(Company(name=name, profit=sum(profit_by_quarter)))
-
-average = total_profit / n
-
-less_profit = []
-more_profit = []
-
-for comp in all_comp:
-    if comp.profit > average:
-        more_profit.append(comp.name)
-    else:
-        less_profit.append(comp.name)
+def func_3(x):
+    my_list = [el for el in str(x)]
+    my_str = ''
+    for el in range(len(my_list)):
+        my_str += my_list.pop()
+    print(f'Программа занимает: {sys.getsizeof(my_list) + sys.getsizeof(my_str) + sys.getsizeof(el)} байт')
+    return my_str
 
 
-print(f'Компании, чья прибыль выше среднего: {more_profit}\nКомпании, чья прибль ниже среднего: {less_profit}\n')
+print(func_1(123450))
+print(func_2(123450))
+print(func_3(123450))
