@@ -1,15 +1,25 @@
-# 1. В диапазоне натуральных чисел от 2 до 99 определить, сколько из них кратны каждому из чисел в диапазоне от 2 до 9.
+import sys
 
-my_list = [el for el in range(2, 100)]
+def func_1(x):
+    print(f'Программа занимает: 0 байт')
+    return str(x)[::-1]
 
-multiple_of_2 = 0
-multiple_of_9 = 0
+def func_2(x):
+    my_str = ''
+    for el in str(x)[::-1]:
+        my_str += el
+    print(f'Программа занимает: {sys.getsizeof(my_str) + sys.getsizeof(el)} байт')
+    return my_str
 
-for el in my_list:
-    if el % 2 == 0:
-        multiple_of_2 += 1
-    elif el % 9 == 0:
-        multiple_of_9 += 1
+def func_3(x):
+    my_list = [el for el in str(x)]
+    my_str = ''
+    for el in range(len(my_list)):
+        my_str += my_list.pop()
+    print(f'Программа занимает: {sys.getsizeof(my_list) + sys.getsizeof(my_str) + sys.getsizeof(el)} байт')
+    return my_str
 
-print(f'{multiple_of_2 = }')
-print(f'{multiple_of_9 = }')
+
+print(func_1(123450))
+print(func_2(123450))
+print(func_3(123450))
